@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<hr>
+{% for comment in comments %}
+    <div class="comment">
+        <div class="date">{{ comment.created }}</div>
+        <strong>{{ comment.name }}</strong>
+        <p>{{ comment.body|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+    
+{% endfor %}
+
+{% endblock %}

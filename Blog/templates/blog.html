@@ -1,0 +1,33 @@
+{% extends 'base.html'%} {% load static%} {% load crispy_forms_tags %} {% block content%}
+<a href="{% url 'Posts'%}">Add</a>
+
+<section id="gallery">
+    <div class="row">
+        <div class="col-md-2">
+            <aside id="sidebar">
+                <h1>Blog</h1>
+            </aside>
+        </div>
+        <div class="col-md-10">
+            {% for post in posts%}
+            <div class="col-md-4 ">
+                <div class="card">
+                    <img src="{{post.image.url}}" class="" width="300px" height="200px" alt="..." />
+                    <div class="card-body">
+                        <h1 class="card-title">{{post.title}}</h1>
+                        <p class="card-text">{{post.content |linebreaksbr|truncatechars:600}}</p>
+                        <a href="{% url 'post-detail' pk=post.pk %}" class="btn btn-outline-success btn-sm">Read
+                            More</a>
+                        <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
+                        <p class="card-text"><small class="text-muted">{{post.date}}</small></p>
+
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}

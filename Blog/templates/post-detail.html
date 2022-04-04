@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Blog Post - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Blog Post -->
+
+            <!-- Title -->
+            <h1>{{ post.title }}</h1>
+
+            <!-- Author -->
+            <p class="lead">
+                by <a href=" ">Admin</a>
+            </p>
+
+
+
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span>{{ post.date }}</p>
+
+            <hr>
+            <!-- Video -->
+            <!-- <video style="margin-left: 10%;" loop class="embed-responsive-item thumbnails" width="200px" controls>
+                <source src="{{post.video.url}}" type="video/mp4">
+            </video> -->
+            <a href="{{post.video.url}}">Watch Sermon</a>
+            <!-- Post Content -->
+            <p>{{ post.content|linebreaksbr }}</p>
+            <hr>
+            <h3>Comments..</h3>
+
+            {% if not post.comments.all %} no comments yet...<a href="{% url 'add-comment' pk=post.pk%}">Add one</a>
+            {% else %} {% for comment in post.comments.all|slice:':3' %}
+            <strong> {{ comment.name }} {{ comment.created }} </strong>
+            <p>{{comment.body }}</p>
+            <br />
+            {% endfor %} {% endif %}
+            <a href="{% url 'add-comment' pk=post.pk %}"> Comment</a>
+            <br />
+                <div class="row pt-5">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="content-section card">
+                            <div class="card-body d-flex justify-content-center">
+                                
+                                <form method="POST" action="/AddComment">
+                                    {% csrf_token %}
+                                      <input type="hidden" id="postid" value="{{post.id}}"/>
+                                      <input type="text" id="newcomment" size="50"/><input type="submit" value="Submit"/>
+                                  </form><br/>
+
+                                <!-- <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <fieldset class="form-group">
+                                        <legend class="border-bottom mb-4 card-title">Comment</legend>
+                                        <div class="m-3"> {{form|crispy}}</div>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <button class="btn btn-outline-info" type="submit">Submit</button>
+                                    </div>
+                                </form> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            
+            
+            
+            <br />
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Subscribe</h4>
+                <p>Sign up with your email address to receive news and updates. We respect your privacy.</p>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Our Mission</h4>
+                <p>To glorify God by sharing the love of God, the teachings of Jesus Christ and the power of the Holy
+                    Spirit within our community</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    {% endblock content %}

@@ -1,0 +1,100 @@
+{% extends 'base.html'%} {% load static%} {% load crispy_forms_tags %} {% block content%}
+<div class="card">
+    <img style="height:600px; width: 100%; " class="image-overlay" src="{% static '/img/logo1.jpg' %}"
+        alt="First slide">
+
+</div>
+
+<div class="container" style="margin-left: 15%; margin-top: 7%; width:90%; ">
+    <div class="row card">
+        <div class="col-md-10 card-text">
+            <p style="color: rgb(18, 35, 182);">Welcome To Our Church</p>
+
+            <h1 style="font-size: 34;" class="">Where we preach the gospel of Christ in this latter days.</h1>
+            <h3>John 3:16 <br> For God so loved the world that He ave His only son that whoever believes in Hi shall not
+                Perish but have eternal life</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 live-button">
+            <a href=""> <button class="btn btn-primary">Join live</button></a>
+
+        </div>
+        <div class="row">
+            <div class="col-md-9 latest-sermon ">
+                <section id="header" class="text-center">
+                    <h1>Latest Sermon</h1>
+                    <h4 class="display-3"> Theme:{{latest_post.title}}</h4>
+                    <a class="btn btn-primary" href="{{latest_post.video.url}}">Watch latest Sermon</a>
+                    <!-- <p class="lead">{{latest_post.content |linebreaksbr|truncatechars:100}}</p>
+                    <a href="" class="btn btn-primary">More</a> -->
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row card" style=" margin-left: 5%; margin-right: 5%; border: 2px solid #eee;">
+        <div class="col-md-7">
+            <h1 style="color: rgb(18, 35, 182); margin-left: 15%;">Our Pastor</h1>
+
+            <img style="height: 300px; margin-left: 15%;" src="{% static '/img/three.jpg' %}" alt="">
+        </div>
+        <div style="margin-top: 5%;" class="col-md-4">
+            <h3>Kepha Kepha</h3>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum
+                has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley
+                of type and scrambled it to make a type specimen e centuries,
+                but also the leap into electronic typesetting, remaining essentially unchanged.Some quick example
+                text
+                to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+</div>
+<div class="row" style="background-color: #eee;">
+    <div class="col-md-4">
+        <div class="belief">
+            <h3 style="text-align: center; font-size: larger;  color: rgb(18, 35, 182);">Our Belief</h3>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum
+                has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley
+                of type and scrambled it to make a ..... <a href="{%url 'About'%}">Read more</a></p>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="belief">
+            <h3 style="text-align: center; font-size: larger; color: rgb(18, 35, 182);">Our Mission</h3>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum
+                has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley
+                of type and scrambled it to make a .....<a href="{%url 'About'%}">Read more</a></p>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="belief">
+            <h3 style="text-align: center; font-size: larger;  color: rgb(18, 35, 182);">Our Story</h3>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum
+                has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley
+                of type and scrambled it to make a....<a href="{%url 'About'%}">Read more</a></p>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+{%endblock%}
